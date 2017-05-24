@@ -1,5 +1,6 @@
 //Het hoofdprogramma
 //HIER NIET IN WERKEN
+#include <functions.ino> // Include generic functions
 #include <sword.ino> //Include sword minigame funcions
 #include <levers.ino> //Include lever mingame functions
 #include <LiquidCrystal.h>
@@ -8,7 +9,7 @@
  * Global Variables
  */
 //Timing stuff
-unsigned long currentTime;
+unsigned long _currentTime;
 
 
 
@@ -20,7 +21,7 @@ void setup() {
 
 void loop() {
   //Set the current time
-  currentTime = millis();
+  _currentTime = millis();
 
 
   //Check if sword is inserted
