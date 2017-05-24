@@ -1,5 +1,9 @@
-#include <functions.ino>
-#include <levers.ino>
+//Het hoofdprogramma
+//HIER NIET IN WERKEN
+#include <sword.ino> //Include sword minigame funcions
+#include <levers.ino> //Include lever mingame functions
+#include <LiquidCrystal.h>
+#include <catapult.ino> //Include catapult minigame functions
 /**
  * Global Variables
  */
@@ -7,14 +11,7 @@
 unsigned long currentTime;
 
 
-//A total of 8 handles
-int handlePins[] = {2,3,4,5,6,7};
 
-//These handles need to be pulled down to have a correct code (the numbers point to the handlePorts Array).
-bool rightHandles[] = {false,true,false,false,true,true};
-
-//Variable to store wether the handles are completed
-bool handlesCompleted = false;
 
 void setup() {
   setupHandles();
@@ -25,27 +22,12 @@ void loop() {
   //Set the current time
   currentTime = millis();
 
-  //Check if handles are Completed
-  if(!handlesCompleted){
-    
-    //Check if handles are correct
-    if(checkHandles()){
-      handlesCompleted = true;
-      Serial.println("You did it");
-    }else{
-      
-    }
-  }else{
-    //Handles are correct.
-    
-  }
 
   //Check if sword is inserted
 
 
   //Check if sword was inserted and handler are completed
-    //Open door
-
+  //Open door
 }
 
 

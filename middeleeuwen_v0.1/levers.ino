@@ -1,3 +1,17 @@
+//Voor Floris en barry
+/**
+ * Global vars
+ */
+ 
+ //A total of 8 handles
+int handlePins[] = {2,3,4,5,6,7};
+
+//These handles need to be pulled down to have a correct code (the numbers point to the handlePorts Array).
+bool rightHandles[] = {false,true,false,false,true,true};
+
+//Variable to store wether the handles are completed
+bool handlesCompleted = false;
+
 /**
  * Setup for the handles
  */
