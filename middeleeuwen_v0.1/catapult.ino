@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include <LiquidCrystal.h>
 
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
@@ -18,6 +19,23 @@ void loop(){
     }
 
   
+=======
+/**
+* comment
+*/
+void setup(){
+  //global variables
+bool targetHit = true;
+
+}
+
+void loop(){
+//if target is hit show number
+if(targetHit){
+   Serial.println("Je hebt de target geraakt. Code cijfer: 7"); 
+  
+  }
+>>>>>>> 0a77b260ef99ae5930e51f5eda465489c092384b
 }
 
 long distance(){
