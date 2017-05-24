@@ -40,7 +40,7 @@ bool checkHandles(){
       }
     }
   }
-  if(totalCorrect == arrayLenghtHandles){  
+  if(totalCorrect == arrayLengthHandles){  
     return true;
   }else{
     return false;

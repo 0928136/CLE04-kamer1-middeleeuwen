@@ -1,10 +1,10 @@
 //Het hoofdprogramma
 //HIER NIET IN WERKEN
-#include <functions.ino> // Include generic functions
-#include <sword.ino> //Include sword minigame funcions
-#include <levers.ino> //Include lever mingame functions
+//#include <functions.ino> // Include generic functions
+//#include <sword.ino> //Include sword minigame funcions
+//#include <levers.ino> //Include lever mingame functions
 #include <LiquidCrystal.h>
-#include <catapult.ino> //Include catapult minigame functions
+//#include <catapult.ino> //Include catapult minigame functions
 /**
  * Global Variables
  */
