@@ -1,22 +1,40 @@
-//Voor Micheal en Wesley
-/**
- * ~~~~Functions used for the catapult minigame~~~~
- */
+////Voor Micheal en Wesley
+///**
+// * ~~~~Functions used for the catapult minigame~~~~
+// */
+//
+///**
+// * Global Variables
+// */
+#include <LiquidCrystal.h>
 
-/**
- * Global Variables
- */
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 
-bool targetHit = false;
+bool targetHit;
+bool showCode;
 int pingPin = 4;
+void setup(){
+  
+  Serial.begin(9600);
+  targetHit = false;
+  showCode = true;
+  
+  
+}
 
+void loop(){
+  if(targetHit == false)
+  ping();
+  
+  if(targetHit == true && showCode == true){
+  Serial.println("You Hit The Target!");
+  Serial.println("The Next Part Of The Code = 7");
+    showCode = false;
+  }
+}
 
-/**
- * Caluclates Distance with proximity sensor
- */
-long distance(){
-  // establish variables for duration of the ping,
+void ping(){
+// establish variables for duration of the ping,
   // and the distance result in inches and centimeters:
   long duration, inches, cm;
 
@@ -45,11 +63,17 @@ long distance(){
   Serial.print(cm);
   Serial.print("cm");
   Serial.println();
-
-  return cm;
+  if(cm < 30 && cm > 0){
+  targetHit = catapultIsDone(targetHit);
+  }
+  delay(10);
+  
 }
 
-bool catapultIsDone(){
-  //Code to check if catapult is done
+bool catapultIsDone(bool target){
+target = true;
+  showCode = true;
+  return target;
+  
 }
 
