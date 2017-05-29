@@ -1,11 +1,13 @@
-////Voor Micheal en Wesley
-///**
-// * ~~~~Functions used for the catapult minigame~~~~
-// */
-//
-///**
-// * Global Variables
-// */
+//Voor Micheal en Wesley
+/**
+ * ~~~~Functions used for the catapult minigame~~~~
+ */
+
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!GEBRUIK GEEN LOOP() OF SETUP() HIERIN. DOE DAT IN SETUPCATAPULT() EN LOOPCATAPULT().!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+
+/**
+ * Global Variables
+ */
 #include <LiquidCrystal.h>
 
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
@@ -13,16 +15,13 @@ LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 bool targetHit;
 bool showCode;
 int pingPin = 4;
-void setup(){
-  
-  Serial.begin(9600);
+
+void setupCatapult(){
   targetHit = false;
   showCode = true;
-  
-  
 }
 
-void loop(){
+void loopCatapult(){
   if(targetHit == false)
   ping();
   
@@ -71,7 +70,7 @@ void ping(){
 }
 
 bool catapultIsDone(bool target){
-target = true;
+  target = true;
   showCode = true;
   return target;
   

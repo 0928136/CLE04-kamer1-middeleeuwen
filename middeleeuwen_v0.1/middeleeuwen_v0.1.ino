@@ -16,6 +16,7 @@ unsigned long _currentTime;
 
 void setup() {
   setupHandles();
+  setupCatapult();
   Serial.begin(9600);
 }
 
@@ -26,6 +27,7 @@ void loop() {
 
   //Check if sword is inserted
 
+  loopCatapult();
 
   //Check if sword was inserted and handler are completed
   //Open door
