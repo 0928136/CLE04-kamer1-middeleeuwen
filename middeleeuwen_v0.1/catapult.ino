@@ -12,22 +12,27 @@
 
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 
-bool targetHit;
-bool showCode;
-int pingPin = 4;
+bool catapult_targetHit;
+bool catapult_showCode;
+int catapult_pingPin = 4;
+unsigned long catapult_lastPing = 0;
+unsigned long catapult_pingInterval = 2000;
 
 void setupCatapult(){
-  targetHit = false;
-  showCode = true;
+  catapult_targetHit = false;
+  catapult_showCode = true;
 }
 
 void loopCatapult(){
-  if(targetHit == false)
-  ping();
+  if(catapult_targetHit == false){
+    if(lastPing < _currentTime - catapult_pingInterval) {
+      ping();
+    }
+  }
   
-  if(targetHit == true && showCode == true){
-  Serial.println("You Hit The Target!");
-  Serial.println("The Next Part Of The Code = 7");
+  if(catapult_targetHit == true && catapult_showCode == true){
+    Serial.println("You Hit The Target!");
+    Serial.println("The Next Part Of The Code = 7");
     showCode = false;
   }
 }
@@ -35,16 +40,17 @@ void loopCatapult(){
 void ping(){
 // establish variables for duration of the ping,
   // and the distance result in inches and centimeters:
-  long duration, inches, cm;
+  long duration, cm;
 
+  
   // The PING))) is triggered by a HIGH pulse of 2 or more microseconds.
   // Give a short LOW pulse beforehand to ensure a clean HIGH pulse:
-  pinMode(pingPin, OUTPUT);
-  digitalWrite(pingPin, LOW);
+  pinMode(catapult_pingPin, OUTPUT);
+  digitalWrite(catapult_pingPin, LOW);
   delayMicroseconds(2);
-  digitalWrite(pingPin, HIGH);
+  digitalWrite(catapult_pingPin, HIGH);
   delayMicroseconds(5);
-  digitalWrite(pingPin, LOW);
+  digitalWrite(catapult_pingPin, LOW);
 
   // The same pin is used to read the signal from the PING))): a HIGH
   // pulse whose duration is the time (in microseconds) from the sending
@@ -63,16 +69,13 @@ void ping(){
   Serial.print("cm");
   Serial.println();
   if(cm < 30 && cm > 0){
-  targetHit = catapultIsDone(targetHit);
+    catapult_targetHit = catapultIsDone(targetHit);
   }
-  delay(10);
-  
 }
 
 bool catapultIsDone(bool target){
-  target = true;
-  showCode = true;
-  return target;
-  
+  catapult_target = true;
+  catapult_showCode = true;
+  return catapult_target;
 }
 

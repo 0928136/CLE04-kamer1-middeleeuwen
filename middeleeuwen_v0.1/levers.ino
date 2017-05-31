@@ -2,6 +2,7 @@
 /**
  * Global vars
  */
+
  
  //A total of 8 handles
 int handlePins[] = {2,3,4,5,6,7};
@@ -21,6 +22,12 @@ void setupHandles(){
     pinMode(handlePins[i], INPUT);
   }
 }
+
+/**
+ * Loop for handles
+ */
+
+ void loopHandles();
 
 /**
  * Checks if the correct handles are activated. 

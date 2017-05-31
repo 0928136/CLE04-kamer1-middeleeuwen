@@ -24,10 +24,16 @@ void loop() {
   //Set the current time
   _currentTime = millis();
 
-
-  //Check if sword is inserted
-
+  //loop for catapult
   loopCatapult();
+  
+  //loop for levers
+  loopLevers();
+
+  //loop for sword
+  loopSword();
+
+  
 
   //Check if sword was inserted and handler are completed
   //Open door
