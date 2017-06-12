@@ -4,22 +4,22 @@
  */
 
  
- //A total of 8 handles
-int handlePins[] = {2,3,4,5,6,7};
+ //A total of 6 handles
+int levers_pins[] = {2,3,4,5,6,7};
 
 //These handles need to be pulled down to have a correct code (the numbers point to the handlePorts Array).
-bool rightHandles[] = {false,true,false,false,true,true};
+bool levers_correct[] = {LOW,HIGH,LOW,LOW,HIGH,HIGH};
 
 //Variable to store wether the handles are completed
-bool handlesCompleted = false;
+bool levers_completed = false;
 
 /**
  * Setup for the handles
  */
-void setupHandles(){
-  int arrayLength = sizeof(handlePins)/sizeof(int);
+void levers_setup(){
+  int arrayLength = sizeof(levers_pins)/sizeof(int);
   for(int i = 0; i < arrayLength; i++){
-    pinMode(handlePins[i], INPUT);
+    pinMode(levers_pins[i], INPUT);
   }
 }
 
@@ -27,29 +27,26 @@ void setupHandles(){
  * Loop for handles
  */
 
- void loopHandles();
+void levers_loop(){
+  
+}
 
 /**
  * Checks if the correct handles are activated. 
  * Return true when it is.
  */
 bool checkHandles(){
-  int arrayLengthHandles = sizeof(handlePins)/sizeof(int);
+  int arrayLengthHandles = sizeof(levers_pins)/sizeof(int);
   int totalCorrect = 0;
   for(int i = 0; i < arrayLengthHandles; i++){
-    if(rightHandles[i]){
-      if(digitalRead(handlePins[i]) == HIGH){
-        totalCorrect++;
-      }
-    }else{
-      if(digitalRead(handlePins[i]) == LOW){
-        totalCorrect++;
-      }
+    if(digitalRead(levers_pins[i]) == levers_correct[i]){
+      totalCorrect++;
     }
   }
-  if(totalCorrect == arrayLengthHandles){  
-    return true;
-  }else{
-    return false;
-  }
-}
+  return (totalCorrect == arrayLengthHandles)
+//  {  
+//    return true;
+//  }else{
+//    return false;
+//  }
+//}

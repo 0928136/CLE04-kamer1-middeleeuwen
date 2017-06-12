@@ -18,14 +18,15 @@ int catapult_pingPin = 4;
 unsigned long catapult_lastPing = 0;
 unsigned long catapult_pingInterval = 2000;
 
-void setupCatapult(){
+void catapult_setup(){
   catapult_targetHit = false;
   catapult_showCode = true;
 }
 
-void loopCatapult(){
+void catapult_loop(){
   if(catapult_targetHit == false){
-    if(lastPing < _currentTime - catapult_pingInterval) {
+    if(checkTime(catapult_lastPing, catapult_pingInterval)) {
+      catapult_lastPing = _currentTime;
       ping();
     }
   }
@@ -33,7 +34,7 @@ void loopCatapult(){
   if(catapult_targetHit == true && catapult_showCode == true){
     Serial.println("You Hit The Target!");
     Serial.println("The Next Part Of The Code = 7");
-    showCode = false;
+    catapult_showCode = false;
   }
 }
 
@@ -55,8 +56,8 @@ void ping(){
   // The same pin is used to read the signal from the PING))): a HIGH
   // pulse whose duration is the time (in microseconds) from the sending
   // of the ping to the reception of its echo off of an object.
-  pinMode(pingPin, INPUT);
-  duration = pulseIn(pingPin, HIGH);
+  pinMode(catapult_pingPin, INPUT);
+  duration = pulseIn(catapult_pingPin, HIGH);
   cm = duration/29/2;
 
   // convert the time into a distance
@@ -69,13 +70,13 @@ void ping(){
   Serial.print("cm");
   Serial.println();
   if(cm < 30 && cm > 0){
-    catapult_targetHit = catapultIsDone(targetHit);
+    catapult_targetHit = catapultIsDone(catapult_targetHit);
   }
 }
 
 bool catapultIsDone(bool target){
-  catapult_target = true;
+  target = true;
   catapult_showCode = true;
-  return catapult_target;
+  return target;
 }
 

@@ -1,5 +1,6 @@
 //Het hoofdprogramma
 //HIER NIET IN WERKEN
+//#include "sword.ino"
 //#include <functions.ino> // Include generic functions
 //#include <sword.ino> //Include sword minigame funcions
 //#include <levers.ino> //Include lever mingame functions
@@ -9,14 +10,12 @@
  * Global Variables
  */
 //Timing stuff
-unsigned long _currentTime;
-
-
-
+unsigned long _currentTime = 0;
 
 void setup() {
-  setupHandles();
-  setupCatapult();
+  catapult_setup();
+  levers_setup();
+  sword_setup();
   Serial.begin(9600);
 }
 
@@ -25,13 +24,13 @@ void loop() {
   _currentTime = millis();
 
   //loop for catapult
-  loopCatapult();
+  catapult_loop();
   
   //loop for levers
-  loopLevers();
+  levers_loop();
 
   //loop for sword
-  loopSword();
+  sword_loop();
 
   
 
